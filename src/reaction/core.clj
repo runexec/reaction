@@ -2,14 +2,18 @@
 
 (def reactions (atom {}))
 
-(defmacro reactive! [-symbol]
+(defmacro reactive! 
+  "Needed for def-reactive! and applies assoc to reactions atom"
+  [-symbol]
   `(swap! ~'reactions 
           assoc
           '~-symbol 
           {:val ~-symbol
            :actions []}))
 
-(defmacro rget [reactive-symbol]
+(defmacro rget 
+  "Applies action-coll fns to the original value of reactive binding"
+  [reactive-symbol]
   (let [{:keys [val actions]} (get @reactions reactive-symbol [])]
     (if-not (seq actions)
       val
@@ -17,8 +21,10 @@
         (doseq [a actions]
           (swap! v a))
         @v))))
-            
-(defmacro rapply! [reactive-symbol -fn]
+
+(defmacro rapply! 
+  "Sets the value of a reactive binding"
+  [reactive-symbol -fn]
   `(do 
      (swap! ~'reactions 
             update-in 
@@ -34,7 +40,9 @@
             (fn [x#] ~value))
      nil))
 
-(defmacro remove-actions! [reactive-symbol]
+(defmacro remove-actions! 
+  "Remove actions from a reactive binding"
+  [reactive-symbol]
   `(do 
      (swap! ~'reactions 
             update-in 
@@ -42,17 +50,23 @@
             empty)
      nil))
 
-(deftype Active [symbol]
-    clojure.lang.IDeref
+(deftype Active 
+    "Ensures the changes are applied to the original value"
+  [symbol]
+  clojure.lang.IDeref
   (deref [object] 
     (eval `(rget ~symbol))))
 
-(defmacro def-reactive! [-symbol & [value]]
+(defmacro def-reactive! 
+  "Binds a reactive value to a symbol"
+  [-symbol & [value]]
   `(do (def ~-symbol ~value)
        (reactive! ~-symbol)
        (def ~-symbol (Active. '~-symbol))))
 
-(defmacro original-value [reactive-symbol]
+(defmacro original-value 
+  "Returns the original value of a reactive binding"
+  [reactive-symbol]
   `(:val
     (get (deref ~'reactions) 
          '~reactive-symbol)))

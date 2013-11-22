@@ -24,8 +24,7 @@ user> (rapply! my-int #(+ 5 %))
 nil
 user> @my-int
 129
-user> (defn reactive-minus-2 []
-	(- @my-int 2))
+user> (defn reactive-minus-2 [] (- @my-int 2))
 #'user/reactive-minus-2
 user> (reactive-minus-2)
 127

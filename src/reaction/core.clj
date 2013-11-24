@@ -33,7 +33,9 @@
             #(conj % ~-fn))
      nil))
 
-(defmacro rset! [reactive-symbol value]
+(defmacro rset!
+  "Sets the value of a reactive binding"
+  [reactive-symbol value]
   `(do 
      (swap! ~'reactions 
             update-in 

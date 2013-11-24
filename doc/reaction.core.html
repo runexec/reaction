@@ -1,0 +1,94 @@
+<html><head><style>li {
+  list-style: none;
+  margin: 10px;
+}a:link {
+  text-decoration: none;
+  color: #F9F9F9;
+  font-weight: bold;
+}a:visited {
+  text-decoration: none;
+  color: #F9F9F9;
+  font-weight: bold;
+}a:hover {
+  text-decoration: none;
+  color: #B9D9C2;
+  font-weight: bold;
+}.navigation {
+  background-color: #2F2933;
+}.left {
+  float: left;
+}h1 {
+  text-align: center;
+}body {
+  background-color: #F9F9F9;
+}.body {
+  width: 600px;
+  margin: 50px 10px 20px 10px;
+}.docstring {
+  background-color: #FFFFFF;
+  border-style: solid;
+  border-color: #2F2933;
+  border-width: 1px 0 1px 0;
+  padding: 10px;
+  margin: 20px;
+}.tags {
+  background-color: #FFFFFF;
+  padding-left: 40px;
+}.private {
+  background-color: #FFFFFF;
+  border-style: dashed;
+  border-color: #FF1200;
+  border-width: 0 4px 0 4px;
+  padding: 0 15px 0 15px;
+}.dynamic {
+  background-color: #FFFFFF;
+  border-style: dashed;
+  border-color: #08A400;
+  border-width: 0 4px 0 4px;
+  padding: 0 15px 0 15px;
+}.variable {
+  background-color: #FFFFFF;
+  border-style: dashed;
+  border-color: #A47A00;
+  border-width: 0 4px 0 4px;
+  padding: 0 15px 0 15px;
+}.function {
+  background-color: #FFFFFF;
+  border-style: dashed;
+  border-color: #A40094;
+  border-width: 0 4px 0 4px;
+  padding: 0 15px 0 15px;
+}.macro {
+  background-color: #FFFFFF;
+  border-style: dashed;
+  border-color: #FFE900;
+  border-width: 0 4px 0 4px;
+  padding: 0 15px 0 15px;
+}.declared {
+  background-color: #FFFFFF;
+  border-style: dashed;
+  border-color: #000000;
+  border-width: 0 4px 0 4px;
+  padding: 0 15px 0 15px;
+}.header {
+  background-color: #FFFFFF;
+  border-style: solid;
+  border-color: #B9D9C2;
+  border-width: 0 0 2px 0;
+  font-size: large;
+  color: #2F2933;
+  font-weight: bold;
+  padding: 10px 0 5px 10px;
+  margin: 0 0 10px 0;
+}</style></head><body><h1>(ns reaction.core)</h1><table><tr><td class="left"><table class="navigation"><tr><td class="left"><ul><li><a href="#"><b><u>Namespaces</u></b></a></li><li><a href="reaction.core.html">reaction.core</a></li></ul></td><td><ul><li><a href="#"><b><u>API</u></b></a></li><li><a href="#-&amp;gt;Active">-&gt;Active</a></li><li><a href="#def-reactive!">def-reactive!</a></li><li><a href="#original-value">original-value</a></li><li><a href="#pop!">pop!</a></li><li><a href="#push!">push!</a></li><li><a href="#rapply!">rapply!</a></li><li><a href="#reactions">reactions</a></li><li><a href="#reactive!">reactive!</a></li><li><a href="#remove-actions!">remove-actions!</a></li><li><a href="#rget">rget</a></li><li><a href="#rset!">rset!</a></li></ul></td></tr></table></td><td><div class="body"><div><div class="header" id="-&amp;gt;Active" name="-&amp;gt;Active">-&gt;Active<span class="tags"><a class="attribute function">function</a></span></div>
+<pre class="docstring">Positional factory function for class reaction.core.Active.</pre><p>(-&gt;Active symbol)</p></div><div><div class="header" id="def-reactive!" name="def-reactive!">def-reactive!<span class="tags"><a class="attribute macro">macro</a></span></div>
+<pre class="docstring">Binds a reactive value to a symbol</pre><p>(def-reactive! -symbol & [value])</p></div><div><div class="header" id="original-value" name="original-value">original-value<span class="tags"><a class="attribute macro">macro</a></span></div>
+<pre class="docstring">Returns the original value of a reactive binding</pre><p>(original-value reactive-symbol)</p></div><div><div class="header" id="pop!" name="pop!">pop!<span class="tags"><a class="attribute macro">macro</a></span></div>
+<pre class="docstring">Pops lasts action fn from action stack. Does n times if provided</pre><p>(pop! reactive-symbol & [n])</p></div><div><div class="header" id="push!" name="push!">push!<span class="tags"><a class="attribute macro">macro</a></span></div>
+<pre class="docstring">calls rapply! for each action fn</pre><p>(push! reactive-symbol & action-fns)</p></div><div><div class="header" id="rapply!" name="rapply!">rapply!<span class="tags"><a class="attribute macro">macro</a></span></div>
+<pre class="docstring">Sets the value of a reactive binding</pre><p>(rapply! reactive-symbol -fn)</p></div><div><div class="header" id="reactions" name="reactions">reactions<span class="tags"><a class="attribute variable">variable</a></span></div>
+</div><div><div class="header" id="reactive!" name="reactive!">reactive!<span class="tags"><a class="attribute macro">macro</a></span></div>
+<pre class="docstring">Needed for def-reactive! and applies assoc to reactions atom</pre><p>(reactive! -symbol)</p></div><div><div class="header" id="remove-actions!" name="remove-actions!">remove-actions!<span class="tags"><a class="attribute macro">macro</a></span></div>
+<pre class="docstring">Remove actions from a reactive binding</pre><p>(remove-actions! reactive-symbol)</p></div><div><div class="header" id="rget" name="rget">rget<span class="tags"><a class="attribute macro">macro</a></span></div>
+<pre class="docstring">Applies action-coll fns to the original value of reactive binding</pre><p>(rget reactive-symbol)</p></div><div><div class="header" id="rset!" name="rset!">rset!<span class="tags"><a class="attribute macro">macro</a></span></div>
+<pre class="docstring">Sets the value of a reactive binding</pre><p>(rset! reactive-symbol value)</p></div></div></td></tr></table></body></html>

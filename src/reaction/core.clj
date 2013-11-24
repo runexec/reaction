@@ -1,4 +1,5 @@
-(ns reaction.core)
+(ns reaction.core
+  (:refer-clojure :exclude [pop!]))
 
 (def reactions (atom {}))
 

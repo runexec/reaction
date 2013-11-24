@@ -50,9 +50,9 @@
             empty)
      nil))
 
-(deftype Active 
-    "Ensures the changes are applied to the original value"
-  [symbol]
+
+(deftype Active [symbol]
+  ;; "Ensures the changes are applied to the original value"  
   clojure.lang.IDeref
   (deref [object] 
     (eval `(rget ~symbol))))

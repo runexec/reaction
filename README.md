@@ -2,6 +2,8 @@
 
 A small reactive programming library for Clojure
 
+[API Docs](http://runexec.github.io/soft-docs/reaction/reaction.core.html)
+
 ## Usage
 
 

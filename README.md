@@ -8,6 +8,28 @@ A small reactive programming library for Clojure
 ```clojure
 user> (use '[reaction.core])
 nil
+reaction.core> (def-reactive! my-int 1)
+#'reaction.core/my-int
+reaction.core> (push! my-int inc inc)
+nil
+reaction.core> @my-int
+3
+reaction.core> (pop! my-int)
+nil
+reaction.core> @my-int
+2
+reaction.core> (pop! my-int)
+nil
+reaction.core> @my-int
+1
+reaction.core> (push! my-int inc (partial + 5) dec)
+nil
+reaction.core> @my-int
+6
+reaction.core> (pop! my-int 3)
+nil
+reaction.core> @my-int
+1
 user> (def-reactive! my-int 123)
 #'user/my-int
 user> @my-int
@@ -50,6 +72,13 @@ user> @my-int
 1
 user> 
 ```
+
+## Changes
+
+##### 0.1.1
+
+Added '''push!''' and '''pop!'''
+Fixed Active '''deftype'''
 
 ## License
 

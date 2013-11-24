@@ -50,7 +50,6 @@
             empty)
      nil))
 
-
 (deftype Active [symbol]
   ;; "Ensures the changes are applied to the original value"  
   clojure.lang.IDeref
@@ -70,3 +69,22 @@
   `(:val
     (get (deref ~'reactions) 
          '~reactive-symbol)))
+
+(defmacro push! 
+  "calls rapply! for each action fn"
+  [reactive-symbol & action-fns]
+  `(doseq [fn# ~(vec action-fns)]
+     (rapply! ~reactive-symbol fn#)))
+
+(defmacro pop!
+  "Pops lasts action fn from action stack. Does n times if provided"
+  [reactive-symbol & [n]]
+  `(dotimes [i# (or ~n 1)]
+     (swap! ~'reactions 
+            update-in 
+            ['~reactive-symbol :actions]
+            butlast)
+     nil))
+  
+
+  
